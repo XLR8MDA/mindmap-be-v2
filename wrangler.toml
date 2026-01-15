@@ -1,0 +1,7 @@
+name = "mindmap-backend"
+main = "src/entry.py"
+compatibility_date = "2024-03-29"
+compatibility_flags = ["python_workers"]
+
+[vars]
+# GROQ_API_KEY will be set via dashboard or `wrangler secret put`
