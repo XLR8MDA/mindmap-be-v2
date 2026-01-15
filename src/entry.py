@@ -65,7 +65,20 @@ async def on_fetch(request, env):
     if request.method == "OPTIONS":
         return Response.new("", headers=create_cors_headers())
 
-    if request.url.endswith("/generate-mindmap") and request.method == "POST":
+    # Create a cleaner path check
+    from urllib.parse import urlparse
+    parsed_url = urlparse(request.url)
+    path = parsed_url.path.rstrip('/')
+
+    # 1. Health Check / Home Route
+    if request.method == "GET" and (path == "" or path == "/"):
+        return Response.new(
+            json.dumps({"status": "ok", "message": "Mindmap Backend is running"}),
+            headers=create_cors_headers()
+        )
+
+    # 2. Main API Route
+    if path == "/generate-mindmap" and request.method == "POST":
         try:
             # 1. Get Secret Key
             try:
