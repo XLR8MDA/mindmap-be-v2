@@ -1,4 +1,4 @@
-name = "mindmap-backend"
+name = "mindmap-be-v2"
 main = "src/entry.py"
 compatibility_date = "2024-03-29"
 compatibility_flags = ["python_workers"]
